@@ -1,0 +1,34 @@
+.data #data storage
+	helloMessege: .asciiz "hello world\n" #.asciiz is a str
+.text #text storage
+	li $v0, 4
+	la $a0, helloMessege
+	syscall #prints
+----------------------------------------------------------------------------
+.data #data storage
+	myChar: .byte 'A' #.byte is 1 byte
+.text #text storage
+	li $v0, 4
+	la $a0, myChar
+	syscall #prints
+----------------------------------------------------------------------------
+.data #data storage
+	myNum: .word 100 #.word is 4 bytes
+.text #text storage
+	li $v0, 1
+	lw $a0, myNum #lw instead of la cuz we are loading thre word not the address
+	syscall #prints string
+----------------------------------------------------------------------------
+.data #data storage
+	num1: .word 100 #.word is 4 bytes
+	num2: .word 32
+.text #text storage
+	lw $t0, num1($zero) #load the number only
+	lw $t1, num2($zero)
+	#arithmetic
+	add $t2, $t1, $t0
+	#to print
+	li $v0, 1
+	add $a0, $t2, $zero  #addi $a0, zero
+	syscall
+---------------------------------------------------------------------------
